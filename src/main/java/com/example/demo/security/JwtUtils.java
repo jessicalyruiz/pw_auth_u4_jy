@@ -16,13 +16,13 @@ public class JwtUtils {
 	
 	private static final Logger LOG=LoggerFactory.getLogger(AuthEntryPointJWT.class);
 
-	@Value("S{app.jwt.secret}")
+	@Value("${app.jwt.secret}")
 	private String jwtSecret;
 	
-	@Value("S{app.jwt.expiration.ms}")
+	@Value("${app.jwt.expiration.ms}")
 	private int jwtExpiration;
 	 
-	public String generateJwtToken(Authentication authentication, String nombre ) {
+	public String generateJwtToken( String nombre ) {
 		
 		LOG.info("Semilla: "+jwtSecret+ " Tiempo: "+ jwtExpiration);
 		return Jwts.builder().setSubject(nombre).setIssuedAt(new Date()).setExpiration(new Date(System.currentTimeMillis()+jwtExpiration)).signWith(SignatureAlgorithm.HS512, jwtSecret).compact();
