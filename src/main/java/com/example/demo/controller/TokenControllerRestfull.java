@@ -15,7 +15,7 @@ import com.example.demo.security.JwtUtils;
 import com.example.demo.service.TO.UsuarioTO;
 
 @RestController
-@RequestMapping(path = "tokens")
+@RequestMapping(path = "/tokens")
 @CrossOrigin
 public class TokenControllerRestfull {
 	/*@Autowired
@@ -30,7 +30,7 @@ public class TokenControllerRestfull {
 	@GetMapping
 	public String construirToken(@RequestBody UsuarioTO usuarioTO) {
 		//UsuarioTO user=this.usuarioService.buscarUsuario(usuarioTO.getUserName());
-		
+		System.out.println(usuarioTO.getUserName());
 		this.authenticate(usuarioTO.getUserName(), usuarioTO.getPassword());
 		
 		return this.jwtUtils.generateJwtToken(usuarioTO.getUserName());
