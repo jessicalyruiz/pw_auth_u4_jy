@@ -14,6 +14,11 @@ public class UsuarioTO implements Serializable{
 	private Integer id;
 	private String userName;
 	private String password;
+	
+	
+	private Integer tiempo;
+	
+	private String semilla;
 	public Integer getId() {
 		return id;
 	}
@@ -31,6 +36,18 @@ public class UsuarioTO implements Serializable{
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public Integer getTiempo() {
+		return tiempo;
+	}
+	public void setTiempo(Integer tiempo) {
+		this.tiempo = tiempo;
+	}
+	public String getSemilla() {
+		return semilla;
+	}
+	public void setSemilla(String semilla) {
+		this.semilla = semilla;
 	}
 	
 	

@@ -24,6 +24,9 @@ public class Usuario {
 	
 	@Column(name = "usua_password")
 	private String password;
+	
+	
+	
 
 
 	public Integer getId() {

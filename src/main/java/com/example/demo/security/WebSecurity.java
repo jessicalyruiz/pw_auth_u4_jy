@@ -52,31 +52,3 @@ public class WebSecurity {
 	}
 }
 
-
-/*
-@Configuration
-public class WebSecurity {
-
-	//4 metodos
-	@Autowired
-	private AuthEntryPointJWT unauthorizedHandler;
-	
-	@Autowired
-	private UserDetailsService userDetailsService;
-	
-	
-	//hacerle publica a la api de login
-	@Bean
-	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-
-		http.cors().and().csrf().disable().exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests().anyRequest().authenticated();
-		
-		http.addFilterBefore(this.authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class); //filtro para q valide el token antes de consumir el api
-		return http.build();
-	}
-	
-	@Bean
-	public AuthTokenFilter authenticationJwtTokenFilter() {
-		return new AuthTokenFilter();
-	}
-}*/

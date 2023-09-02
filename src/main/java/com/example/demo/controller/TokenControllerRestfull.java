@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -27,13 +28,15 @@ public class TokenControllerRestfull {
 	@Autowired
 	private JwtUtils jwtUtils;
 	
-	@GetMapping
+	@GetMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public String construirToken(@RequestBody UsuarioTO usuarioTO) {
 		//UsuarioTO user=this.usuarioService.buscarUsuario(usuarioTO.getUserName());
 		System.out.println(usuarioTO.getUserName());
+		System.out.println(usuarioTO.getSemilla());
+		System.out.println(usuarioTO.getTiempo());
 		this.authenticate(usuarioTO.getUserName(), usuarioTO.getPassword());
 		
-		return this.jwtUtils.generateJwtToken(usuarioTO.getUserName());
+		return this.jwtUtils.generateJwtToken(usuarioTO.getUserName(),usuarioTO.getTiempo(),usuarioTO.getSemilla());
 	}
 	
 	private void authenticate(String usuario, String password) {

@@ -40,48 +40,4 @@ public class AuthEntryPointJWT implements AuthenticationEntryPoint {
 
 }
 
-/*
 
-public class AuthTokenFilter extends OncePerRequestFilter{
-
-	private static final Logger LOG=LoggerFactory.getLogger(AuthTokenFilter.class);
-
-	
-	@Autowired
-	private JwtUtils jwtUtils;
-	
-	@Override
-	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		try {
-		String jwt=this.parseJwt(request);
-		if(jwt!=null && this.jwtUtils.validateJwtToken(jwt)) {
-			//como es valido el token, lo authentico
-			String nombre= this.jwtUtils.getUsrNameFromJwtToken(jwt);
-			//////////////// atuenticacion
-			UsernamePasswordAuthenticationToken authentication=new UsernamePasswordAuthenticationToken(nombre, null, new ArrayList<>());
-			
-			authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-			SecurityContextHolder.getContext().setAuthentication(authentication); //seteo la authenticacion en la session
-			LOG.info("************unername  "+nombre);
-		}
-		}catch (Exception e) {
-			// TODO: handle exception
-			LOG.error("no se pudo realizar la authencicacion cfon el token enviado: {}", e.getMessage());
-			
-		}
-		filterChain.doFilter(request, response);//procesar le filtro
-	}
-
-	private String parseJwt(HttpServletRequest request) {
-		String valorCompleto=request.getHeader("Authorization");
-		if(StringUtils.hasText(valorCompleto)&& valorCompleto.startsWith("Bearer ")) {
-			return valorCompleto.substring(7, valorCompleto.length());
-		}
-		return null; 
-	}
-	
-	
-}
-*/
