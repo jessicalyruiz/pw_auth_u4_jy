@@ -12,6 +12,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+
 
 @Configuration
 public class WebSecurity {
@@ -48,3 +51,32 @@ public class WebSecurity {
 		return authConfig.getAuthenticationManager();
 	}
 }
+
+
+/*
+@Configuration
+public class WebSecurity {
+
+	//4 metodos
+	@Autowired
+	private AuthEntryPointJWT unauthorizedHandler;
+	
+	@Autowired
+	private UserDetailsService userDetailsService;
+	
+	
+	//hacerle publica a la api de login
+	@Bean
+	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+
+		http.cors().and().csrf().disable().exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests().anyRequest().authenticated();
+		
+		http.addFilterBefore(this.authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class); //filtro para q valide el token antes de consumir el api
+		return http.build();
+	}
+	
+	@Bean
+	public AuthTokenFilter authenticationJwtTokenFilter() {
+		return new AuthTokenFilter();
+	}
+}*/
